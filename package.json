@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "cac": "^7.0.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "joi": "^18.2.8",
+    "mongoose": "^9.9.5",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "ava": "^8.0.1"
+  },
+  "scripts": {},
+  "type": "module"
+}
