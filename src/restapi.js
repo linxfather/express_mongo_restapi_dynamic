@@ -1,5 +1,5 @@
 import { apiv1Info } from '../constants/apiv1.js';
-import { checkParams, loggerApiReq, router as restApiRouter } from './routers/restapi.router.js';
+import { loggerApiReq, router as restApiRouter } from './routers/restapi.router.js';
 import { logger, loggerApi, env } from '../constants/app.js';
 import { mongooseConnect, mongooseConnectTest } from '../config/modules/mongoose.js';
 import express from 'express';
@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(apiPrefix, loggerApiReq);
-app.use(apiPrefix, checkParams);
 app.use(apiPrefix, restApiRouter);
 
 app.get('/', (req, res) => {

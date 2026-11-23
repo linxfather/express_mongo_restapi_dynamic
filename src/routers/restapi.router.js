@@ -28,22 +28,6 @@ export function loggerApiReq(req, res, next) {
   next();
 }
 
-export function checkParams(req, res, next) {
-  const { name, id } = req.params;
-  if (name) {
-    const mClass = apiModels.getClass(name);
-    if (!mClass) {
-      routerSendJson(res, 404, {error: "not found collection"});
-      return;
-    }
-    if (id && !apiModels.isId(id)) {
-      routerSendJson(res, 404, {error: "not found id"});
-      return;
-    }
-  }
-  next();
-}
-
 router.get('/:name/:id', async (req, res) => {
   const { name, id } = req.params;
   const mClass = apiModels.getClass(name);
@@ -54,6 +38,8 @@ router.get('/:name/:id', async (req, res) => {
     } else {
       routerSendJson(res, 404, {error: "not found item"});
     }
+  } else {
+    routerSendJson(res, 404, {error: "not found collection"});
   }
 });
 
@@ -68,6 +54,8 @@ router.delete('/:name/:id', async (req, res) => {
     } else {
       routerSendJson(res, 404, {error: "not found item"});
     }    
+  } else {
+    routerSendJson(res, 404, {error: "not found collection"});
   }
 });
 
@@ -103,6 +91,8 @@ router.get('/:name', async (req, res) => {
         routerSendJson(res, 404, {error: 'not found items'});
       }
     }
+  } else {
+    routerSendJson(res, 404, {error: "not found collection"});
   }
 });
 
@@ -140,6 +130,8 @@ async function routerUpdateOrInsert(updateMode, req, res) {
     } else {
       routerSendJson(res, 404);
     }
+  } else {
+    routerSendJson(res, 404, {error: "not found collection"});
   }
 }
 
