@@ -7,7 +7,11 @@ const schema = new mongoose.Schema({
     type: ObjectId,
     required: true
   },
-  product: Product.schema
+  product: Product.schema,
+  count: {
+    type: Number,
+    required: true
+  }
 });
 
 export const Cart = mongoose.model('Cart', schema);

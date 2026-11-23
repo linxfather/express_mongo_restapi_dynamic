@@ -5,7 +5,7 @@ import { BaseModel } from "./schemas/baseModel.schema.js";
 import mongoose from "mongoose";
 
 export class apiModelsClass {
-  #list = {
+  #classes = {
     users: User,
     products: Product,
     carts: Cart
@@ -15,7 +15,7 @@ export class apiModelsClass {
    * @returns {BaseModel | undefined}
    */
   getClass(name) {
-    return this.#list[name];
+    return this.#classes[name];
   }
   /**
    * @param {BaseModel} mClass 
