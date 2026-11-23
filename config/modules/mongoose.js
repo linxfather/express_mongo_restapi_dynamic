@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { env } from '../env.js';
+import { netCheckPort } from '../../utils/net.js';
 
 // TODO: default db, test db
 
@@ -12,6 +13,14 @@ export async function mongooseConnect() {
       mongoose.connection.once('connected', resolve);
       mongoose.connection.once('error', reject);
     });
+    return;
+  }
+  const mongoURL = new URL(env.mongo_uri);
+  console.log(env.mongo_uri, mongoURL.hostname);
+
+  if (await netCheckPort(mongoURL.hostname, mongoURL.port) !== 'open') {
+    console.log('ERR: mongoose_connect', `netCheckPort = ${mongoURL.host}`);
+    process.exit(1);
     return;
   }
   try {
