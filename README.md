@@ -24,6 +24,19 @@
 - node src/restapi 
   - at http://127.0.0.1:3000
 
+## Unit tests
+
+Set up
+- `node src/restapi test_db`
+
+Run test 
+- `node node_modules/.bin/ava`
+- `npm run test`
+
+Single file run
+- `npm run test -- tests/common/email.test.js`
+- ...
+
 ## Example - Bruno
 
 [Bruno docs](https://docs.usebruno.com/)
