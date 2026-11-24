@@ -36,7 +36,7 @@ test ('cart_example', async t => {
   for (let i = 0; i<2; i++) {
     await testFetchv1('POST', '/products', {
       title: 'product ' + i,
-      price: i*100
+      price: (i+1)*100
     }, OUT);
     t.true(OUT.status === 201, 'product status === 201');
   }
@@ -46,11 +46,10 @@ test ('cart_example', async t => {
   t.true(OUT.status === 200, 'products status === 200');
   let products = OUT.body.data;
   //
-  console.log('write cart');
-  products[0].cartCount = 10;
   await testFetchv1('POST', '/carts', {
     userId,
     product: products[0],
+    count: 10
   }, OUT);
   t.true(OUT.status === 201, 'cart status === 201');
   //

@@ -36,7 +36,6 @@ export async function testFetchv1(method, url, body, out) {
       ...(body ? {headers:{'content-type': 'application/json'}} : {}),
       ...(body ? {body:JSON.stringify(body)} : {})
     };
-    console.log('111');
     out.res = await fetch(`${apiv1Info.localhostURL}${url}`, opt);
     out.status = out.res.status;
     const ctype = out.res.headers.get('content-type') || '';

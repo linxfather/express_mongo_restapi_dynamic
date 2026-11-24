@@ -16,8 +16,6 @@ export async function mongooseConnect() {
     return;
   }
   const mongoURL = new URL(env.mongo_uri);
-  console.log(env.mongo_uri, mongoURL.hostname);
-
   if (await netCheckPort(mongoURL.hostname, mongoURL.port) !== 'open') {
     console.log('ERR: mongoose_connect', `netCheckPort = ${mongoURL.host}`);
     process.exit(1);

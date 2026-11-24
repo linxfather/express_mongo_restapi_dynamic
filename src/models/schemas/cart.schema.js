@@ -7,10 +7,15 @@ const schema = new mongoose.Schema({
     type: ObjectId,
     required: true
   },
-  product: Product.schema,
+  product: {
+    type: ObjectId,
+    ref: 'Product',
+    required: true
+  },
   count: {
     type: Number,
-    required: true
+    required: true,
+    min: 1
   }
 });
 
